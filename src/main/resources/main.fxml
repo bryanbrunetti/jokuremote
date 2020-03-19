@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
-<AnchorPane fx:id="mainRemoteWindow" maxHeight="800.0" maxWidth="250.0" minHeight="800.0" minWidth="250.0" prefHeight="800.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <ImageView fitHeight="800.0" fitWidth="292.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-47.0" AnchorPane.topAnchor="0.0">
-            <image>
-                <Image url="@assets/RemoteNormalSize.png" />
-            </image>
-        </ImageView>
-        <Button fx:id="homeButton" layoutX="126.0" layoutY="83.0" mnemonicParsing="false" onMouseClicked="#homeButton" opacity="0.0" prefHeight="34.0" prefWidth="71.0" text="Home" />
-        <Button fx:id="backButton" layoutX="34.0" layoutY="87.0" mnemonicParsing="false" onAction="#backButton" opacity="0.0" prefHeight="27.0" prefWidth="71.0" text="Back" />
-        <ListView fx:id="channelList" layoutX="20.0" layoutY="414.0" prefHeight="303.0" prefWidth="188.0" />
-        <ChoiceBox fx:id="deviceListBox" layoutX="39.0" layoutY="24.0" prefWidth="150.0" />
-        <Button fx:id="upButton" layoutX="94.0" layoutY="153.0" minWidth="35.0" mnemonicParsing="false" opacity="0.0" prefHeight="34.0" prefWidth="54.0" text="Up" />
-        <Button fx:id="rightButton" layoutX="135.0" layoutY="189.0" minWidth="35.0" mnemonicParsing="false" opacity="0.0" prefHeight="41.0" prefWidth="54.0" text="Right" />
-        <Button fx:id="leftButton" layoutX="52.0" layoutY="188.0" minWidth="35.0" mnemonicParsing="false" opacity="0.0" prefHeight="41.0" prefWidth="54.0" text="Left" />
-        <Button fx:id="downButton" layoutX="94.0" layoutY="231.0" minWidth="35.0" mnemonicParsing="false" opacity="0.0" prefHeight="41.0" prefWidth="54.0" text="Down" />
-        <Button fx:id="okButton" layoutX="92.0" layoutY="305.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="OK" />
-        <Button fx:id="searchButton" layoutX="34.0" layoutY="305.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="Search" />
-        <Button fx:id="starButton" layoutX="148.0" layoutY="305.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="*" />
-        <Button fx:id="rewindButton" layoutX="34.0" layoutY="361.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="Rewind" />
-        <Button fx:id="playButton" layoutX="92.0" layoutY="361.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="Play" />
-        <Button fx:id="forwardButton" layoutX="148.0" layoutY="361.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="Forward" />
-      <Button layoutX="85.0" layoutY="140.0" mnemonicParsing="false" text="BUTTON" onMouseClicked="#homeButton"/>
-    </children>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainRemoteWindow" maxHeight="800.0" maxWidth="250.0" minHeight="800.0" minWidth="238.0" prefHeight="800.0" prefWidth="238.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+    <ImageView fx:id="remoteControl" fitHeight="800.0" fitWidth="238.0" layoutX="5.0" pickOnBounds="true" smooth="false" style="-fx-background-color: rgba(0, 0, 0, 0.1);" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="0.0">
+        <Image fx:id="remoteControlImage" url="@assets/RemoteNormalSize.png" />
+    </ImageView>
+    <ChoiceBox value="Searching ..." fx:id="deviceListBox" accessibleHelp="Roku Devices" accessibleText="Roku Devices" layoutX="35.0" layoutY="24.0" prefHeight="27.0" prefWidth="170.0" />
+    <Button fx:id="Home" layoutX="135.0" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#homeButton" opacity="0.0" prefHeight="34.0" prefWidth="71.0" text="Home" />
+    <Button fx:id="Back" layoutX="44.0" layoutY="88.0" mnemonicParsing="false" onAction="#backButton" opacity="0.0" prefHeight="27.0" prefWidth="71.0" text="Back" />
+
+    <Button fx:id="Up" layoutX="96.0" layoutY="153.0" minWidth="35.0" mnemonicParsing="false" opacity="0.0" prefHeight="34.0" prefWidth="54.0" text="Up" />
+    <Button fx:id="Right" layoutX="137.0" layoutY="189.0" minWidth="35.0" mnemonicParsing="false" opacity="0.0" prefHeight="41.0" prefWidth="54.0" text="Right" />
+    <Button fx:id="Left" layoutX="54.0" layoutY="188.0" minWidth="35.0" mnemonicParsing="false" opacity="0.0" prefHeight="41.0" prefWidth="54.0" text="Left" />
+    <Button fx:id="Down" layoutX="96.0" layoutY="231.0" minWidth="35.0" mnemonicParsing="false" opacity="0.0" prefHeight="41.0" prefWidth="54.0" text="Down" />
+    <Button fx:id="Select" layoutX="107.0" layoutY="305.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="OK" />
+    <Button fx:id="Search" layoutX="43.0" layoutY="305.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="Search" />
+    <Button fx:id="Info" layoutX="167.0" layoutY="305.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="*" />
+    <Button fx:id="Rev" layoutX="43.0" layoutY="361.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="Rewind" />
+    <Button fx:id="Play" layoutX="105.0" layoutY="361.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="Play" />
+    <Button fx:id="Fwd" layoutX="167.0" layoutY="361.0" minWidth="32.0" mnemonicParsing="false" opacity="0.0" prefHeight="32.0" prefWidth="32.0" text="Forward" />
+
+    <ListView fx:id="channelList" layoutX="26.0" layoutY="414.0" prefHeight="303.0" prefWidth="188.0" />
 </AnchorPane>
