@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 
 import java.io.IOException;
@@ -15,8 +15,8 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
     public HashMap<String,String> deviceListMap = new HashMap<>();
-    public ObservableList<String> devices = FXCollections.observableArrayList("Select a Roku Device");
-    @FXML private ChoiceBox<String> deviceListBox;
+    public ObservableList<String> devices = FXCollections.observableArrayList();
+    @FXML private ComboBox<String> deviceListBox;
     @FXML private ImageView remoteControl;
 
     @FXML
@@ -27,16 +27,14 @@ public class Controller implements Initializable {
 
     @FXML
     public void newDeviceFound(String address) throws IOException, InterruptedException {
-        System.out.println("Roku Address: " + address);
-        System.out.println("deviceListBox: " + deviceListBox);
-        System.out.println("imageBox: " + remoteControl);
         String deviceInfo = RokuAPI.getDeviceInfo(address);
-        System.out.println(deviceInfo);
         SimpleXMLParser parser = new SimpleXMLParser(deviceInfo);
         String deviceName = parser.findByTagName("user-device-name");
         String deviceLocation = parser.findByTagName("user-device-location");
+        devices.removeAll("Select a Roku ...");
         devices.add(deviceName + " (" + deviceLocation + ")");
         deviceListMap.put(deviceName + " (" + deviceLocation + ")", address);
+        deviceListBox.setItems(devices);
     }
 
     @FXML
@@ -51,7 +49,11 @@ public class Controller implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("initialize: " + deviceListBox);
         deviceListBox.setItems(devices);
-        deviceListBox.setValue(devices.get(0));
+        deviceListBox.setValue("Select a Roku ...");
         discoverDevices();
+    }
+
+    public void changeDevices(ActionEvent actionEvent) {
+        System.out.println("Device Change: " + actionEvent);
     }
 }

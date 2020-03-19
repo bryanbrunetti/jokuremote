@@ -30,8 +30,6 @@ public class Main extends Application {
         stage.setScene(scene);
         setWindowDraggable(root, stage);
         stage.show();
-
-//        controller.discoverDevices();
     }
 
 
