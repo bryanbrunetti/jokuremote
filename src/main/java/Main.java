@@ -19,10 +19,10 @@ public class Main extends Application {
         Controller controller = new Controller();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
         Parent root = loader.load();
+
         loader.setController(controller);
 
         root.setStyle("-fx-background-color: rgba(0, 0, 0, 0.0);");
-
         stage.setTitle("JokuRemote");
         Scene scene = new Scene(root, 250, 800);
         scene.setFill(Color.TRANSPARENT);
@@ -30,7 +30,10 @@ public class Main extends Application {
         stage.setScene(scene);
         setWindowDraggable(root, stage);
         stage.show();
+
+//        controller.discoverDevices();
     }
+
 
     public static void main(String[] args) {
         launch();

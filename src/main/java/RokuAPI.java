@@ -9,25 +9,29 @@ import java.net.http.HttpResponse;
 
 
 public class RokuAPI {
-    public static void discover(Controller controller) {
+    public static void setDiscoveryListener(Controller controller) {
         DiscoveryRequest networkStorageDevice = SsdpRequest.builder().serviceType("roku:ecp").build();
         SsdpClient.create().discoverServices(networkStorageDevice, buildDiscoveryListener(controller));
     }
 
-    public static void newDeviceFound(String location) {
+    public static void sendKey(String key) {
 
     }
 
-    public static String getDeviceInfo(String location) throws IOException, InterruptedException {
+    public static String apiCall(String url) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(location + "/query/device-info"))
+                .uri(URI.create(url))
                 .build();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         if (response.statusCode() == 200) {
             return response.body();
         }
         return "";
+    }
+
+    public static String getDeviceInfo(String location) throws IOException, InterruptedException {
+        return apiCall(location + "/query/device-info");
     }
 
     public static DiscoveryListener buildDiscoveryListener(Controller controller) {
