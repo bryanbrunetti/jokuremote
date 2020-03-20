@@ -19,10 +19,10 @@ public class SimpleXMLParser {
         return "";
     }
 
-    public ArrayList parseTagAttribute(String attr) {
+    public ArrayList<String> parseTagAttribute(String attr) {
         Pattern regEx = Pattern.compile(attr + "=\"(.*?)\"");
         Matcher matcher = regEx.matcher(xml);
-        var attributes = new ArrayList();
+        ArrayList<String> attributes = new ArrayList<>();
         while (matcher.find()) {
             attributes.add(matcher.group(1));
         }
