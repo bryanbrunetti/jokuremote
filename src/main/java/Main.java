@@ -25,6 +25,7 @@ public class Main extends Application {
         root.setStyle("-fx-background-color: rgba(0, 0, 0, 0.0);");
         stage.setTitle("JokuRemote");
         Scene scene = new Scene(root, 250, 800);
+        scene.getStylesheets().add("style.css");
         scene.setFill(Color.TRANSPARENT);
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setScene(scene);
@@ -38,7 +39,7 @@ public class Main extends Application {
     }
 
     public void stop() {
-        System.out.println("Stopping JokuRemote");
+        System.exit(1);
     }
 
     public void setWindowDraggable(Parent root, Stage stage) {

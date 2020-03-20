@@ -1,0 +1,6 @@
+#channelList {
+    -fx-background-color: transparent;
+}
+#channelList .list-cell {
+    -fx-background-color: transparent;
+}

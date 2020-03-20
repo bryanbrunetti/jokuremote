@@ -14,23 +14,28 @@ public class RokuAPI {
         SsdpClient.create().discoverServices(networkStorageDevice, buildDiscoveryListener(controller));
     }
 
-    public static void sendKey(String key) {
-
+    public static void sendCommand(String url) {
+        apiCall(url);
     }
 
-    public static String apiCall(String url) throws IOException, InterruptedException {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(url))
-                .build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        if (response.statusCode() == 200) {
-            return response.body();
+    public static String apiCall(String url) {
+
+        try {
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .build();
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            if (response.statusCode() == 200) {
+                return response.body();
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
         return "";
     }
 
-    public static String getDeviceInfo(String location) throws IOException, InterruptedException {
+    public static String getDeviceInfo(String location) {
         return apiCall(location + "/query/device-info");
     }
 
@@ -38,11 +43,7 @@ public class RokuAPI {
         return new DiscoveryListener() {
             @Override
             public void onServiceDiscovered(SsdpService service) {
-                try {
-                    controller.newDeviceFound(service.getLocation());
-                } catch (IOException | InterruptedException e) {
-                    e.printStackTrace();
-                }
+                controller.newDeviceFound(service.getLocation());
             }
 
             @Override
